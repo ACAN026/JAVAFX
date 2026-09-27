@@ -1,0 +1,28 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.web.WebView;
+
+public class PlayerController {
+
+    @FXML
+    private WebView webView;
+
+    @FXML
+    public void initialize() {
+
+        webView.getEngine().load(
+            "https://www.trthaber.com/canli-yayin-izle/trt-haber/"
+        );
+    }
+
+    @FXML
+    private void yenile() {
+        webView.getEngine().reload();
+    }
+
+    @FXML
+    private void durdur() {
+        webView.getEngine().loadContent("");
+    }
+}

@@ -1,0 +1,36 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+public class PlayerController {
+
+    @FXML
+    private WebView webView;
+
+    @FXML
+    public void initialize() {
+        webView.getEngine().load(
+            "https://www.atv.com.tr/canli-yayin"
+        );
+    }
+
+    @FXML
+    private void yenile() {
+        webView.getEngine().reload();
+    }
+
+    @FXML
+    private void durdur() {
+        webView.getEngine().loadContent("");
+    }
+
+    @FXML
+    private void tamEkran() {
+
+        Stage stage = (Stage) webView.getScene().getWindow();
+
+        stage.setFullScreen(!stage.isFullScreen());
+    }
+}

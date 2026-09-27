@@ -1,0 +1,104 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+public class PlayerController {
+
+    @FXML
+    private WebView webView;
+
+    @FXML
+    private HBox controls;
+
+    private WebEngine engine;
+
+    @FXML
+    public void initialize() {
+
+        engine = webView.getEngine();
+
+        // ↓↓↓ BURAYA SENİN CANLI TV SITE LINKIN ↓↓↓
+        engine.load("https://BURAYA-LINKINI-YAZ");
+    }
+
+    @FXML
+    private void yenile() {
+        engine.reload();
+    }
+
+    @FXML
+    private void tamEkran() {
+
+        Stage stage =
+                (Stage) webView.getScene().getWindow();
+
+        /*
+         * Sayfadaki video veya iframe'i bulup
+         * ekranın tamamına yaymaya çalışıyoruz.
+         */
+        try {
+
+            engine.executeScript("""
+                (function() {
+
+                    var player = document.querySelector('video');
+
+                    if (!player) {
+                        player = document.querySelector('iframe');
+                    }
+
+                    if (!player) {
+                        return;
+                    }
+
+                    player.style.position = 'fixed';
+                    player.style.top = '0';
+                    player.style.left = '0';
+
+                    player.style.width = '100vw';
+                    player.style.height = '100vh';
+
+                    player.style.maxWidth = 'none';
+                    player.style.maxHeight = 'none';
+
+                    player.style.margin = '0';
+                    player.style.padding = '0';
+
+                    player.style.zIndex = '2147483647';
+                    player.style.background = 'black';
+
+                })();
+            """);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Alttaki JavaFX butonlarını gizle
+        controls.setVisible(false);
+        controls.setManaged(false);
+
+        // JavaFX penceresini tam ekran yap
+        stage.setFullScreenExitHint("");
+        stage.setFullScreen(true);
+    }
+
+    @FXML
+    private void normalEkran() {
+
+        Stage stage =
+                (Stage) webView.getScene().getWindow();
+
+        stage.setFullScreen(false);
+
+        controls.setVisible(true);
+        controls.setManaged(true);
+
+        // Siteyi eski normal haline getir
+        engine.reload();
+    }
+}

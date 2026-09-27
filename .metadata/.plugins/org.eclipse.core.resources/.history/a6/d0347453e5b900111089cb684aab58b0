@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.MediaView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="application.PlayerController">
+
+    <top>
+        <Label text="TRT HABER"
+               BorderPane.alignment="CENTER"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 15px;"/>
+    </top>
+
+    <center>
+    	<StackPane style="-fx-background-color: black;">
+
+        	<MediaView fx:id="mediaView"
+                   preserveRatio="true"
+                   fitWidth="900"
+                   fitHeight="500" />
+
+    	</StackPane>
+	</center>
+
+    <bottom>
+        <HBox alignment="CENTER"
+              spacing="20"
+              style="-fx-padding: 15px;">
+
+            <Button text="▶ Oynat"
+                    onAction="#play"/>
+
+            <Button text="⏹ Durdur"
+                    onAction="#stop"/>
+
+        </HBox>
+    </bottom>
+
+</BorderPane>

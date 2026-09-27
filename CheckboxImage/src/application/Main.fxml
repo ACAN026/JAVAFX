@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <ImageView fx:id="image" fitHeight="212.0" fitWidth="221.0" layoutX="190.0" layoutY="45.0" onDragDetected="#degistir" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/tbm-logo.png" />
+         </image></ImageView>
+      <CheckBox fx:id="cb" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="290.0" mnemonicParsing="false" onAction="#degistir" prefHeight="75.0" prefWidth="174.0" text="TBM/AUTRACT">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>

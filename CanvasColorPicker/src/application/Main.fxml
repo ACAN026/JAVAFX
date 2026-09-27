@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <ColorPicker fx:id="colorPicker" layoutX="449.0" layoutY="24.0" onAction="#cizim">
+         <value>
+            <Color />
+         </value>
+      </ColorPicker>
+      <Canvas fx:id="canvas" height="356.0" layoutX="20.0" layoutY="21.0" onDragDetected="#cizim" width="414.0" />
+      <Separator layoutX="443.0" layoutY="17.0" orientation="VERTICAL" prefHeight="374.0" prefWidth="4.0" />
+      <Separator layoutX="17.0" layoutY="16.0" prefHeight="3.0" prefWidth="427.0" />
+      <Separator layoutX="17.0" layoutY="385.0" prefHeight="3.0" prefWidth="427.0" />
+      <Separator layoutX="11.0" layoutY="14.0" orientation="VERTICAL" prefHeight="374.0" prefWidth="0.0" />
+   </children>
+</AnchorPane>

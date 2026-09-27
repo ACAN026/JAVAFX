@@ -1,0 +1,99 @@
+package application;
+
+import javafx.concurrent.Worker;
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+public class PlayerController {
+
+    @FXML
+    private WebView webView;
+
+    @FXML
+    private HBox controls;
+
+    private WebEngine engine;
+
+    @FXML
+    public void initialize() {
+
+        engine = webView.getEngine();
+
+        // BURAYA SENİN CANLI TV LİNKİN
+        engine.load("https://www.canlitv.vin/");
+
+        engine.getLoadWorker().stateProperty().addListener(
+                (observable, oldValue, newValue) -> {
+
+            if (newValue == Worker.State.SUCCEEDED) {
+                System.out.println("Sayfa yüklendi.");
+            }
+        });
+    }
+
+    @FXML
+    private void tamEkran() {
+
+        Stage stage =
+                (Stage) webView.getScene().getWindow();
+
+        try {
+
+            engine.executeScript("""
+                (function() {
+
+                    var video = document.querySelector('video');
+
+                    if (!video) {
+                        return;
+                    }
+
+                    document.body.innerHTML = '';
+
+                    document.body.style.margin = '0';
+                    document.body.style.padding = '0';
+                    document.body.style.background = 'black';
+                    document.body.style.overflow = 'hidden';
+
+                    video.style.position = 'fixed';
+                    video.style.left = '0';
+                    video.style.top = '0';
+                    video.style.width = '100vw';
+                    video.style.height = '100vh';
+                    video.style.objectFit = 'contain';
+                    video.style.background = 'black';
+
+                    document.body.appendChild(video);
+
+                })();
+            """);
+
+            controls.setVisible(false);
+            controls.setManaged(false);
+
+            stage.setFullScreenExitHint("");
+            stage.setFullScreen(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void normalEkran() {
+
+        Stage stage =
+                (Stage) webView.getScene().getWindow();
+
+        stage.setFullScreen(false);
+
+        controls.setVisible(true);
+        controls.setManaged(true);
+
+        // Sayfayı tekrar normal haline getir
+        engine.reload();
+    }
+}
